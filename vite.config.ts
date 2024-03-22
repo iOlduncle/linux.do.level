@@ -7,7 +7,7 @@ export default defineConfig({
     monkey({
       entry: 'src/main.ts',
       userscript: {
-        icon: 'https://vitejs.dev/logo.svg',
+        icon: 'https://cdn.linux.do/uploads/default/original/1X/de7ee26820e897b6a07350126411ebc489f62202.png',
         namespace: 'https://linux.do/u/io.oi/s/level',
         match: ['https://linux.do/*'],
         grant:'GM.xmlHttpRequest',
