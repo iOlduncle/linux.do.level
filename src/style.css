@@ -1,17 +1,18 @@
 .level-window {
     position: fixed;
-    bottom: 5em;
-    background: #313131;
+    bottom: 0;
+    background: var(--secondary);
     z-index: 999;
     padding: 0.5em;
-    color: #ddd;
-    border-radius: 4px;
+    color: var(--primary);
+    box-shadow: 0 0 4px rgba(0,0,0,.125);
+    border: 1px solid var(--primary-low);
 }
 
 .level-window .title .close {
     width: 30px;
     height: 30px;
-    color: #ddd;
+    color: white;
     background: red;
     display: inline-block;
     text-align: center;
@@ -22,14 +23,14 @@
 }
 
 .level-window .bg-white {
-    background-color: #222;
+    background-color: var(--primary-50);
     border-radius: 0.5em;
     padding: 0.5em;
     margin-top: 0.5em;
 }
 
 .level-window h1 {
-    color: white;
+    color: var(--primary);
     font-size: 1.3rem;
 }
 
@@ -38,7 +39,7 @@
 }
 
 .mb-4 table tr:nth-child(even) {
-    background-color: #313131;
+    background-color: var(--tertiary-400);
 }
 
 .level-window .text-red-500 {

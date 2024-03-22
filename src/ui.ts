@@ -4,6 +4,7 @@ import { getLevelFromConnect } from "./http";
 let levelWindow: HTMLElement | undefined = undefined;
 
 export function createLevelButton(): HTMLLIElement {
+
     let li = document.createElement('li');
     li.className = 'header-dropdown-toggle chat-header-icon';
     li.innerHTML = `
@@ -24,14 +25,16 @@ export function createLevelButton(): HTMLLIElement {
             }
         });
     });
+
     return li;
 }
 
 export function createWindow(content: string): HTMLElement {
+
     let root = document.createElement('div');
     root.setAttribute('id', 'level-window');
     root.className = 'level-window';
-    root.style.right = document.querySelector('div.chat-drawer.is-expanded') ? '450px' : '5em';
+    root.style.right = document.querySelector('div.chat-drawer.is-expanded') ? '430px' : '15px';
     root.innerHTML = `
      <div class="title">
          <span class="close" id="close-button">
@@ -41,10 +44,12 @@ export function createWindow(content: string): HTMLElement {
          </span>
          <div id="content" class="content"></div>
      </div>`;
+
     let div = root.querySelector<HTMLDivElement>('#content');
     if (div) {
         div.innerHTML = content;
     }
+
     let close = root.querySelector<HTMLSpanElement>('#close-button');
     if (close) {
         close.addEventListener('click', () => {
@@ -52,5 +57,6 @@ export function createWindow(content: string): HTMLElement {
             levelWindow = undefined;
         });
     }
+
     return root;
 }
