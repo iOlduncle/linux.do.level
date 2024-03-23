@@ -7,6 +7,7 @@ export function createLevelButton(): HTMLLIElement {
 
     let li = document.createElement('li');
     li.className = 'header-dropdown-toggle chat-header-icon';
+    li.setAttribute('id', 'level-button');
     li.innerHTML = `
         <div class="widget-component-connector">
             <a class="icon btn-flat" tabindex="2" title="查看我的等级">
@@ -56,6 +57,15 @@ export function createWindow(content: string): HTMLElement {
             root.remove();
             levelWindow = undefined;
         });
+    }
+
+    let chatContainer = document.querySelector('div.chat-drawer-outlet-container');
+    if (chatContainer) {
+        let observer = new MutationObserver(_ => {
+            let chat = document.querySelector('div.chat-drawer.is-expanded');
+            root.style.right = chat ? '430px' : '15px';
+        });
+        observer.observe(chatContainer, { childList: true })
     }
 
     return root;

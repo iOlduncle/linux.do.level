@@ -38,6 +38,7 @@ dist-ssr
 # production
 /build
 
+
 # misc
 .DS_Store
 *.pem
@@ -54,3 +55,4 @@ dist-ssr
 *.tsbuildinfo
 next-env.d.ts
 
+package-lock.json

@@ -13,7 +13,7 @@ export default defineConfig({
                 grant: 'GM.xmlHttpRequest',
                 author: 'LINUX.DO',
                 description: 'Linux.Do 查看用户信任级别以及升级条件，数据来源于 https://connect.linux.do',
-                version: '1.0.1'
+                version: '1.1.0'
             },
         }),
     ],
