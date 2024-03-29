@@ -6,7 +6,7 @@
 
 效果如下图
 
-![效果图](https://raw.githubusercontent.com/iolduncle/linux.do.level/master/screenshot/level.gif)
+![效果图](https://raw.githubusercontent.com/iolduncle/linux.do.level/master/screenshot/level.webp)
 
 # 安装
 [Greasy Fork 脚本地址](https://greasyfork.org/zh-CN/scripts/490520-linux-do-level)
@@ -21,7 +21,13 @@ npm install
 npm run build
 ```
 
-# 更新：
+# 本次更新
+## 1.1.1
+- 修复标题栏添加查看等级按钮后，会影响搜索按钮和个人信息按钮功能问题。
+- 查看等级按钮新增加载指示。
+
+# 历史更新：
+## 1.1.0
 - 适配了 Linux.Do 的主题。
 - 修复查看等级窗口会遮挡聊天窗口问题。
 - 修复查看等级按钮会消失的问题。
