@@ -5,7 +5,7 @@
     z-index: 999;
     padding: 0.5em;
     color: var(--primary);
-    box-shadow: 0 0 4px rgba(0,0,0,.125);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .125);
     border: 1px solid var(--primary-low);
 }
 
@@ -52,4 +52,24 @@
 
 .level-window .mb-4 table tr td {
     padding: 4px 8px;
+}
+
+/*div.topic-avatar .post-avatar a[data-user-card=neo] img.avatar {*/
+/*    border: 1px solid var(--tertiary) !important;*/
+/*    box-shadow: none !important;*/
+/*    animation: none !important;*/
+/*}*/
+
+/*div.topic-avatar .post-avatar a[data-user-card='IO.OI'] img.avatar, div.topic-avatar .post-avatar a[data-user-card='Musifei'] img.avatar {*/
+/*    border: 0;*/
+/*    box-shadow: 0 0 0 1px var(--tertiary), 0 0 0 3px var(--tertiary), 0 0 0 4px var(--tertiary), 0 0 10px 4px rgba(0, 174, 255, .75);*/
+/*}*/
+
+div.topic-avatar .post-avatar {
+    a[data-user-card='IO.OI'], a[data-user-card='Musifei'] {
+        img.avatar {
+            border: 0;
+            box-shadow: 0 0 0 1px var(--tertiary), 0 0 0 3px var(--tertiary), 0 0 0 4px var(--tertiary), 0 0 10px 4px rgba(0, 174, 255, .75);
+        }
+    }
 }
