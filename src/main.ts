@@ -1,16 +1,17 @@
 import { Invite } from "./invite/invite";
 import { Level } from "./level/level";
-import './style.css';
 // import { Like } from "./like/like";
+import { Floor } from "./floor/floor";
 
-(() => {
-    function init() {
-        window.addEventListener('load', () => {
-            new Level().init();
-            new Invite().init();
-            // new Like().init();
-        });
-    }
+import './style.css'
 
-    init();
-})();
+function init() {
+    window.addEventListener('load', () => {
+        new Level().init();
+        new Invite().init();
+        // new Like().init();
+        new Floor().init();
+    });
+}
+
+init();

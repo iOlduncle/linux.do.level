@@ -1,5 +1,6 @@
 import { MessageBoxButton, showMessageBox } from "./invite-ui";
-import { observeDom } from "../utils";
+import { isOnTopicPage, observeDom } from "../utils";
+import { DomEventBus } from "../dom-event-bus";
 
 export class Invite {
     private fixInviteAnchors(container?: Element) {
@@ -31,9 +32,8 @@ export class Invite {
 
     private observeMainOutlet() {
         let observe: MutationObserver | null = null;
-        observeDom('div#main-outlet', _ => {
-            // console.log(mainOutlet);
-            if (window.location.href.includes('https://linux.do/t/topic')) {
+        DomEventBus.getInstance().add('div#main-outlet',()=>{
+            if (isOnTopicPage()) {
                 this.fixInviteAnchors();
                 observe = observeDom('div#main-outlet div.container.posts div.row div.ember-view', (dom) => {
                     this.fixInviteAnchors(dom);

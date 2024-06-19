@@ -11,7 +11,6 @@ export class Level {
     }
 
     private replaceConnectAnchor() {
-
         let connectAnchor = document.querySelector<HTMLAnchorElement>('a[href="https://connect.linux.do"]');
         if (connectAnchor) {
             connectAnchor.href = 'javascript:void(0);';

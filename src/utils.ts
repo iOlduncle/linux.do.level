@@ -4,7 +4,6 @@ export function observeDom(selector: string, onChanged: ObserveDomChanged, optio
 
     let dom = document.querySelector(selector);
     if (dom) {
-        console.log(dom);
         const observer = new MutationObserver(() => {
             onChanged(dom);
         });
@@ -20,4 +19,8 @@ export function random(min: number, max: number) {
     const range = max - min;
     const rand = Math.random();
     return (min + Math.round(rand * range));
+}
+
+export function isOnTopicPage(): boolean {
+    return window.location.href.includes('https://linux.do/t/topic');
 }

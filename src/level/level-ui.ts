@@ -1,3 +1,4 @@
+import { DomEventBus } from "../dom-event-bus";
 
 export function createWindow(content: string, onClose: () => void): HTMLElement {
 
@@ -21,11 +22,12 @@ export function createWindow(content: string, onClose: () => void): HTMLElement 
     }
 
     let close = root.querySelector<HTMLSpanElement>('span#close-button');
-    if (close) {
-        close.addEventListener('click', () => {
-            onClose();
-        });
-    }
+    close?.addEventListener('click', onClose);
+
+    DomEventBus.getInstance().add('div.chat-drawer-outlet-container', () => {
+        let chat = document.querySelector('div.chat-drawer.is-expanded');
+        root.style.right = chat ? '430px' : '15px';
+    });
 
     let chatContainer = document.querySelector('div.chat-drawer-outlet-container');
     if (chatContainer) {
