@@ -10,20 +10,21 @@
 }
 
 .level-window .title .close {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     color: white;
     background: red;
     display: inline-block;
     text-align: center;
-    line-height: 30px;
+    line-height: 24px;
     float: right;
     cursor: pointer;
     border-radius: 4px;
+    font-size: var(--base-font-size-largest);
 }
 
 .level-window .bg-white {
-    background-color: var(--primary-50);
+    background-color: var(--primary-low);
     border-radius: 0.5em;
     padding: 0.5em;
     margin-top: 0.5em;
@@ -53,6 +54,33 @@
 .level-window .mb-4 table tr td {
     padding: 4px 8px;
 }
+
+.language-text {
+    background: var(--primary-very-low);
+    font-family: var(--d-font-family--monospace);
+    font-size: var(--base-font-size-smallest);
+    flex-grow: 1;
+}
+
+.code-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .copy {
+        padding: .5em 1em;
+        cursor: pointer;
+        user-select: none;
+        font-size: var(--base-font-size-smallest);
+        background: var(--secondary);
+    }
+}
+
+.connect-button {
+    width: 100%;
+    padding: .5em;
+    margin-top: .5em !important;
+}
+
 
 /*div.topic-avatar .post-avatar a[data-user-card=neo] img.avatar {*/
 /*    border: 1px solid var(--tertiary) !important;*/

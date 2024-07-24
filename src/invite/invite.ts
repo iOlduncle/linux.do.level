@@ -1,4 +1,4 @@
-import { MessageBoxButton, showMessageBox } from "./invite-ui";
+import { MessageBoxButton, showMessageBox } from "../component-ui";
 import { isOnTopicPage, observeDom } from "../utils";
 import { DomEventBus } from "../dom-event-bus";
 
