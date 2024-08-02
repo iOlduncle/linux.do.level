@@ -2,13 +2,14 @@ import { DomEventBus } from "../dom-event-bus";
 
 function createCodeElement(key: string): HTMLDivElement {
 
+    let realKey = key;
     let copied: boolean = false;
     let root = document.createElement('div');
     root.className = 'bg-white p-6 rounded-lg mb-4 shadow';
     root.innerHTML = `
         <h2>DeepLX Api Key</h2>
         <div class="code-box">
-            <span class="hljs language-text">${ key }</span>
+            <span class="hljs language-text">${ key.replace(key.substring(12, 21), '***加密***') }</span>
         </div>
     `;
 
@@ -17,7 +18,7 @@ function createCodeElement(key: string): HTMLDivElement {
     copyButton.innerHTML = '复制';
     copyButton.addEventListener('click', async () => {
         if (!copied) {
-            await navigator.clipboard.writeText(key);
+            await navigator.clipboard.writeText(realKey);
             copied = true;
             copyButton.innerHTML = '已复制';
             let timer = setTimeout(() => {

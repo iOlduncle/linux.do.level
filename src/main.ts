@@ -4,6 +4,7 @@ import { Level } from "./level/level";
 import { Floor } from "./floor/floor";
 
 import './style.css'
+import { Emoji } from "./emoji/emoji";
 
 function init() {
     window.addEventListener('load', () => {
@@ -11,6 +12,7 @@ function init() {
         new Invite().init();
         // new Like().init();
         new Floor().init();
+        new Emoji().init();
     });
 }
 
