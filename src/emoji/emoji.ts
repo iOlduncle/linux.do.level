@@ -6,19 +6,22 @@ export class Emoji {
 
         let emojiPicker = document.querySelector('div.emoji-picker.opened');
         if (emojiPicker) {
-            let emojiButtons = emojiPicker.querySelector("div.emoji-picker-category-buttons");
-            if (emojiButtons) {
-                let last = emojiButtons.lastElementChild! as HTMLDivElement;
-                emojiButtons.insertBefore(last, emojiButtons.children[0].nextSibling);
-            }
-            let emojiContainer = emojiPicker.querySelector('div.emojis-container');
-            if (emojiContainer) {
-                let t = setInterval(() => {
+
+            // dom元素存在没加载完的问题
+            let timer = setTimeout(() => {
+                let emojiButtons = emojiPicker.querySelector("div.emoji-picker-category-buttons");
+                if (emojiButtons) {
+                    let last = emojiButtons.lastElementChild! as HTMLDivElement;
+                    emojiButtons.insertBefore(last, emojiButtons.children[0].nextSibling);
+                }
+                let emojiContainer = emojiPicker.querySelector('div.emojis-container');
+                if (emojiContainer) {
+
                     let last = emojiContainer.lastElementChild! as HTMLDivElement;
                     emojiContainer.insertBefore(last, emojiContainer.children[0].nextSibling);
-                    clearInterval(t);
-                });
-            }
+                }
+                clearInterval(timer);
+            });
         }
     });
 
