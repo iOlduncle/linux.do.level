@@ -9,7 +9,7 @@ function createCodeElement(key: string): HTMLDivElement {
     root.innerHTML = `
         <h2>DeepLX Api Key</h2>
         <div class="code-box">
-            <span class="hljs language-text">${ key.replace(key.substring(12, 21), '***加密***') }</span>
+            <span class="hljs language-text">${ key.replace(key.substring(12, 21), '**加密**') }</span>
         </div>
     `;
 

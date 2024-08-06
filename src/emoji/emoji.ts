@@ -6,9 +6,8 @@ export class Emoji {
 
         let emojiPicker = document.querySelector('div.emoji-picker.opened');
         if (emojiPicker) {
-
             // dom元素存在没加载完的问题
-            let timer = setTimeout(() => {
+            let timer = setInterval(() => {
                 let emojiButtons = emojiPicker.querySelector("div.emoji-picker-category-buttons");
                 if (emojiButtons) {
                     let last = emojiButtons.lastElementChild! as HTMLDivElement;
