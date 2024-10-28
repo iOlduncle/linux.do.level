@@ -1,8 +1,8 @@
 type ObserveDomChanged = (dom: Element) => void;
 
-export function observeDom(selector: string, onChanged: ObserveDomChanged, option?: MutationObserverInit): MutationObserver | null {
+export function observeDom(selector: string | Element, onChanged: ObserveDomChanged, option?: MutationObserverInit): MutationObserver | null {
 
-    let dom = document.querySelector(selector);
+    let dom = typeof selector === "string" ? document.querySelector(selector) : selector;
     if (dom) {
         const observer = new MutationObserver(() => {
             onChanged(dom);
