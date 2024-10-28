@@ -2,6 +2,7 @@ import { observeDom } from "./utils";
 
 export type DomEvents =
     'div#main-outlet'
+    | 'div.post-stream'
     | 'div.chat-drawer-outlet-container'
     | 'div.container.posts section.topic-area div.ember-view';
 
