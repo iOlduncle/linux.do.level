@@ -4,7 +4,10 @@ export type DomEvents =
     'div#main-outlet'
     | 'div.post-stream'
     | 'div.chat-drawer-outlet-container'
-    | 'div.container.posts section.topic-area div.ember-view';
+    | 'div.container.posts section.topic-area div.ember-view'
+    | 'bottom-loading'
+    | 'top-loading'
+    | 'replay-changed';
 
 export class DomEventBus {
     private static instance: DomEventBus;

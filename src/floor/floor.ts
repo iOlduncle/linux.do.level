@@ -12,25 +12,19 @@ export class Floor {
 
     private observeUrl() {
         const changed = () => {
-            // console.log('div#main-outlet changed.');
-            if (isOnTopicPage()) {
-                // let postView = document.querySelector('div.post-stream')?.parentElement;
-                // this.eventBus.add('div.post-stream', () => {
-                //     console.log('div.post-stream changed.');
-                //     if (isOnTopicPage()) {
-                //         this.fixFloorDom();
-                //     }
-                // }, postView);
-
-                this.eventBus.add('div.post-stream', () => {
-                    if (isOnTopicPage()) {
-                        this.fixFloorDom();
-                    }
-                });
-                this.fixFloorDom();
-            } else {
-                this.eventBus.clear('div.container.posts section.topic-area div.ember-view');
-            }
+            const timer = setInterval(() => {
+                if (isOnTopicPage()) {
+                    this.eventBus.add('div.post-stream', () => {
+                        if (isOnTopicPage()) {
+                            this.fixFloorDom();
+                        }
+                    });
+                    this.fixFloorDom();
+                } else {
+                    this.eventBus.clear('div.post-stream');
+                }
+                clearInterval(timer);
+            });
         };
 
         this.eventBus.add('div#main-outlet', changed);

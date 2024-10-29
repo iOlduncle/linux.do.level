@@ -68,3 +68,45 @@ export function showMessageBox(message: string, title: string, buttons: MessageB
         }
     }
 }
+
+export function showModal(title: string, content: Element) {
+    let root = document.querySelector('div.modal-container');
+    if (root == null) {
+        console.error('query div.modal-container error');
+        return;
+    }
+
+    let box = document.createElement('div');
+    box.id = 'message-box';
+    box.className = 'ember-view modal d-modal discard-draft-modal';
+    box.setAttribute('data-keyboard', 'false');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('role', 'dialog');
+    box.innerHTML = `
+          <div class="d-modal__container">
+            <div class="d-modal__header">
+              <div class="d-modal__title">
+                <h1 id="discourse-modal-title" class="d-modal__title-text">${ title }</h1>
+              </div>
+              <button id="m-close-btn" class="btn no-text btn-icon btn-transparent modal-close" title="关闭" type="button">
+                <svg class="fa d-icon d-icon-times svg-icon svg-string" xmlns="http://www.w3.org/2000/svg">
+                  <use href="#times"></use>
+                </svg>  
+              </button>
+            </div>
+            <div class="d-modal__body" tabindex="-1">
+              <div class="instructions">
+              </div>
+            </div>
+            <div class="d-modal__footer">
+            </div>
+        </div>`;
+    let instructions = box.querySelector('div.instructions');
+    instructions?.appendChild(content);
+    root.appendChild(box);
+
+    let close = box.querySelector('div#m-close-btn');
+    close?.addEventListener('click', () => {
+        box.remove();
+    })
+}

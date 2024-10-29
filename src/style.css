@@ -66,6 +66,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     .copy {
         padding: .5em 1em;
         cursor: pointer;
@@ -80,23 +81,30 @@
     padding: .5em;
     margin-top: .5em !important;
 }
-.emoji-picker-category-buttons,.emoji-picker-emoji-area{
+
+.emoji-picker-category-buttons, .emoji-picker-emoji-area {
     justify-content: center;
     padding-left: initial;
 }
 
-.emoji-picker-category-buttons::-webkit-scrollbar ,.emoji-picker-emoji-area::-webkit-scrollbar{
+.emoji-picker-category-buttons::-webkit-scrollbar, .emoji-picker-emoji-area::-webkit-scrollbar {
     width: 5px;
     height: auto;
     background: var(--primary);
 }
-.emoji-picker-category-buttons::-webkit-scrollbar-thumb,.emoji-picker-emoji-area::-webkit-scrollbar-thumb{
-    box-shadow : inset 0 0 5px rgba(0, 0, 0, 0.2);
+
+.emoji-picker-category-buttons::-webkit-scrollbar-thumb, .emoji-picker-emoji-area::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     background: var(--secondary);
 }
-.emoji-picker-category-buttons::-webkit-scrollbar-track,.emoji-picker-emoji-area::-webkit-scrollbar-track{
-    box-shadow : inset 0 0 5px rgba(0, 0, 0, 0.2);
+
+.emoji-picker-category-buttons::-webkit-scrollbar-track, .emoji-picker-emoji-area::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     background: var(--primary-low);
+}
+
+.floor-text {
+    color: var(--tertiary);
 }
 
 
