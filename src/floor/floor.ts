@@ -44,9 +44,14 @@ export class Floor {
                 let article = floor.querySelector('article');
                 if (article) {
                     let id = article.getAttribute('id')?.replace('post_', '');
-                    let actions = floor.querySelector('article section nav div.actions');
+                    let actions = floor.querySelectorAll('article section nav div.actions');
                     const button = createFloor(id ? id : '??');
-                    actions?.appendChild(button);
+                    if (actions.length > 0) {
+                        const i = actions.length === 2 ? 1 : 0;
+                        actions[i].appendChild(button);
+                    } else {
+                        console.error('query actions error.');
+                    }
                 }
             }
             clearInterval(timer);
