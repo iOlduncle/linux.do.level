@@ -19,13 +19,13 @@
     line-height: 24px;
     float: right;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: var(--d-button-border-radius);
     font-size: var(--base-font-size-largest);
 }
 
 .level-window .bg-white {
     background-color: var(--primary-low);
-    border-radius: 0.5em;
+    border-radius: var(--d-button-border-radius);
     padding: 0.5em;
     margin-top: 0.5em;
 }
@@ -60,6 +60,7 @@
     font-family: var(--d-font-family--monospace);
     font-size: var(--base-font-size-smallest);
     flex-grow: 1;
+    padding: 6px;
 }
 
 .code-box {
@@ -79,6 +80,7 @@
 .connect-button {
     width: 100%;
     padding: .5em;
+    border-radius: var(--d-button-border-radius) !important;
     margin-top: .5em !important;
 }
 

@@ -50,7 +50,7 @@ export function createWindow(title: Element, key: string, levelTable: Element, o
      <div class="title">
          <span class="close" id="close-button">
               <svg class="fa d-icon d-icon-times svg-icon svg-string" xmlns="http://www.w3.org/2000/svg">
-                  <use href="#times"></use>
+                  <use href="#xmark"></use>
               </svg>
          </span>
          <div id="content" class="content"></div>

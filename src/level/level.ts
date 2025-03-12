@@ -39,7 +39,7 @@ export class Level {
         content: Element | null | undefined
     } {
         let title = dom.querySelector('h1.text-2xl');
-        title?.querySelector('a[href="/logout"]')?.remove();
+        title?.querySelector('a[href^="/logout/"]')?.remove();
         let levelTable = dom.querySelector('div.bg-white.p-6.rounded-lg.mb-4.shadow table')?.parentElement;
         let key = dom.querySelector('div.bg-white.p-6.rounded-lg.mb-4.shadow p strong')?.innerHTML;
         let status = key !== undefined && levelTable !== null;

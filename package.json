@@ -1,7 +1,7 @@
 {
   "name": "linux.do.level",
   "private": true,
-  "version": "1.4.6",
+  "version": "1.4.10",
   "type": "module",
   "scripts": {
     "dev": "vite",

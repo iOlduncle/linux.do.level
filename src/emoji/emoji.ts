@@ -13,12 +13,19 @@ import { observeDom } from "../utils";
 //     }
 // }
 
+//emoji-picker__sections-nav
+//emoji-picker__scrollable-content
+//data-section
+//d-menu-portals
 export class Emoji {
 
-    private moveElementToFirstBySelector(selector: string, root: Element) {
+    private moveElementToFirstBySelector(selector: string, root: Element, click: boolean = false) {
         let node = root.querySelector(selector);
         if (node) {
             root.insertBefore(node, root.children[0].nextSibling);
+            if (click && node instanceof HTMLButtonElement) {
+                node.click();
+            }
         }
     }
 
@@ -26,21 +33,27 @@ export class Emoji {
 
     private observe = new MutationObserver(() => {
 
-        let emojiPicker = document.querySelector('div.emoji-picker.opened');
+        let loadTimes = 0;
+        let emojiPicker = document.querySelector('div.emoji-picker');
         if (emojiPicker) {
             // dom元素存在没加载完的问题
             let timer = setInterval(() => {
-                let emojiButtons = emojiPicker.querySelector("div.emoji-picker-category-buttons");
-                let emojiContainer = emojiPicker.querySelector('div.emojis-container');
+                let emojiButtons = emojiPicker.querySelector("div.emoji-picker__sections-nav");
+                let emojiContainer = emojiPicker.querySelector('div.emoji-picker__sections');
                 if (emojiButtons && emojiContainer) {
                     for (const custom of this.customs) {
                         // emojiButtons.moveElementToFirstBySelector(`button[data-section="custom-${ custom }"]`);
                         // emojiContainer.moveElementToFirstBySelector(`div[data-section="custom-${ custom }"]`);
-                        this.moveElementToFirstBySelector(`button[data-section="custom-${ custom }"]`, emojiButtons);
-                        this.moveElementToFirstBySelector(`div[data-section="custom-${ custom }"]`, emojiContainer);
+                        this.moveElementToFirstBySelector(`div[data-section="${ custom }"]`, emojiContainer);
+                        this.moveElementToFirstBySelector(`button[data-section="${ custom }"]`, emojiButtons, custom === '贴吧');
                     }
+                    clearInterval(timer);
                 }
-                clearInterval(timer);
+                loadTimes ++;
+                if (loadTimes >= 300) {
+                    console.warn('emoji 加载缓慢，跳过修正，下次打开表情面板即可正常显示。')
+                    clearInterval(timer);
+                }
             });
         }
     });
@@ -53,9 +66,9 @@ export class Emoji {
 
     private onReplayOpen(replay: Element) {
         if (replay.className.includes('open')) {
-            let editor = replay.querySelector('div.d-editor');
-            if (editor) {
-                this.observe.observe(editor, { childList: true });
+            let menu = document.querySelector('div#d-menu-portals');
+            if (menu) {
+                this.observe.observe(menu, { childList: true });
             } else {
                 console.error('querySelector:div.d-editor');
             }
