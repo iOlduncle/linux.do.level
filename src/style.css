@@ -109,6 +109,25 @@
     color: var(--tertiary);
 }
 
+.sidebar-container {
+    .top-menu {
+        background: transparent;
+        .menu-placeholder{
+            flex: 1;
+        }
+    }
+    .menu-item-extended {
+        flex: 1;
+        justify-content: center;
+    }
+    .menu-item-extended > svg{
+        margin: 0 !important;
+    }
+}
+
+:root{
+    --sidebar-section-wrapper-padding: 0rem 1rem 1rem !important;
+}
 
 /*div.topic-avatar .post-avatar a[data-user-card=neo] img.avatar {*/
 /*    border: 1px solid var(--tertiary) !important;*/

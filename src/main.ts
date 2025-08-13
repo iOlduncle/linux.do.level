@@ -5,6 +5,7 @@ import {Floor} from "./floor/floor";
 
 import './style.css'
 import {Emoji} from "./emoji/emoji";
+import {Menu} from "./menu/menu";
 
 function init() {
     window.addEventListener('load', (event) => {
@@ -14,6 +15,7 @@ function init() {
             // new Like().init();
             new Floor().init();
             new Emoji().init();
+            new Menu().init();
         }
     });
 }
