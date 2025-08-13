@@ -1,3 +1,5 @@
+import {DomEventBus} from "../dom-event-bus";
+
 export class Menu {
     public init(): void {
         this.moveTopMenu();
@@ -24,6 +26,13 @@ export class Menu {
                 }
             }
             sidebarContainer.prepend(menus)
+
+            DomEventBus.getInstance().add('div.sidebar-wrapper', () => {
+                const wrapper = document.querySelector('div.sidebar-wrapper');
+                if (wrapper && wrapper.hasChildNodes()) {
+                    document.querySelector<HTMLDivElement>('section.sidebar-container')?.prepend(menus)
+                }
+            })
 
         } else {
             console.error('Menu not found.');

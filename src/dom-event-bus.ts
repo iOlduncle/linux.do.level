@@ -7,7 +7,8 @@ export type DomEvents =
     | 'div.container.posts section.topic-area div.ember-view'
     | 'bottom-loading'
     | 'top-loading'
-    | 'replay-changed';
+    | 'replay-changed'
+    | 'div.sidebar-wrapper';
 
 export class DomEventBus {
     private static instance: DomEventBus;
