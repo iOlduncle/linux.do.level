@@ -1,6 +1,6 @@
-import { getLevelFromConnect } from "../http";
-import { createWindow } from "./level-ui";
-import { getLoadingSvg, showMessageBox } from "../component-ui";
+import {getLevelFromConnect} from "../http";
+import {createDivLink, createWindow} from "./level-ui";
+import {getLoadingSvg, showMessageBox} from "../component-ui";
 
 export class Level {
 
@@ -55,46 +55,43 @@ export class Level {
     private replaceConnectAnchor() {
         let connectAnchor = document.querySelector<HTMLAnchorElement>('a[href="https://connect.linux.do"]');
         if (connectAnchor) {
-            connectAnchor.href = 'javascript:void(0);';
-            connectAnchor.addEventListener('click', async () => {
+            const defaultHtml = connectAnchor.innerHTML;
+            const link = createDivLink(connectAnchor.innerHTML);
+            link.addEventListener('click', async () => {
                 if (!this.loading && this.levelWindow === undefined) {
-                    this.loading = true;
-                    let icon = connectAnchor.querySelector('span.sidebar-section-link-prefix.icon');
-                    if (icon) {
-                        let defaultIcon = icon.innerHTML;
-                        icon.innerHTML = getLoadingSvg();
-                        let result = await getLevelFromConnect();
-                        this.loading = false;
-                        icon.innerHTML = defaultIcon;
-                        if (result.status) {
-                            let dom = this.loadDomFromString(result.content);
-                            let body = this.getContentsFromDom(dom);
+                    this.loading = true;//fa d-icon d-icon-link svg-icon svg-string
+                    link.innerHTML = `${getLoadingSvg()} Connect`
+                    let result = await getLevelFromConnect();
+                    this.loading = false;
+                    link.innerHTML = defaultHtml;
+                    if (result.status) {
+                        let dom = this.loadDomFromString(result.content);
+                        let body = this.getContentsFromDom(dom);
 
-                            if (body.status) {
-                                this.levelWindow = createWindow(body.title!, body.key!, body.content!, () => {
-                                    this.close();
-                                });
-                                document.body.appendChild(this.levelWindow);
-                            } else {
-                                this.showErrorAndGotoConnect(body.error!);
-                            }
+                        if (body.status) {
+                            this.levelWindow = createWindow(body.title!, body.key!, body.content!, () => {
+                                this.close();
+                            });
+                            document.body.appendChild(this.levelWindow);
                         } else {
-                            this.showErrorAndGotoConnect(result.error);
+                            this.showErrorAndGotoConnect(body.error!);
                         }
+                    }else {
+                        this.showErrorAndGotoConnect(result.error);
                     }
-
                 } else {
                     this.close();
                 }
             });
-
+            connectAnchor.parentElement?.appendChild(link);
+            connectAnchor.remove();
             return;
         }
         console.error('replace connect anchor error.');
     }
 
     private close() {
-        this.levelWindow!.remove();
+        this.levelWindow?.remove();
         this.levelWindow = undefined;
     }
 }

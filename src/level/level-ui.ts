@@ -1,4 +1,4 @@
-import { DomEventBus } from "../dom-event-bus";
+import {DomEventBus} from "../dom-event-bus";
 
 function createCodeElement(key: string): HTMLDivElement {
 
@@ -9,7 +9,7 @@ function createCodeElement(key: string): HTMLDivElement {
     root.innerHTML = `
         <h2>DeepLX Api Key</h2>
         <div class="code-box">
-            <span class="hljs language-text">${ key.replace(key.substring(12, 21), '**加密**') }</span>
+            <span class="hljs language-text">${key.replace(key.substring(12, 21), '**加密**')}</span>
         </div>
     `;
 
@@ -78,8 +78,18 @@ export function createWindow(title: Element, key: string, levelTable: Element, o
             let chat = document.querySelector('div.chat-drawer.is-expanded');
             root.style.right = chat ? '430px' : '15px';
         });
-        observer.observe(chatContainer, { childList: true })
+        observer.observe(chatContainer, {childList: true})
     }
 
     return root;
+}
+
+export function createDivLink(content: string): HTMLDivElement {
+
+    const div = document.createElement('div');
+    div.className = 'submenu-link';
+    div.title = 'LINUX DO Connect 账号连接系统。';
+    div.style.cursor = 'pointer';
+    div.innerHTML = content;
+    return div;
 }
