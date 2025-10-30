@@ -1,7 +1,7 @@
 {
   "name": "linux.do.level",
   "private": true,
-  "version": "1.4.14",
+  "version": "1.5.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "typescript": "^5.3.3",
-    "vite": "6.3.4",
+    "vite": "7.1.11",
     "vite-plugin-monkey": "^3.5.1"
   },
   "dependencies": {

@@ -109,25 +109,56 @@
     color: var(--tertiary);
 }
 
-.sidebar-container {
-    .top-menu {
-        background: transparent;
-        .menu-placeholder{
-            flex: 1;
-        }
-    }
-    .menu-item-extended {
-        flex: 1;
-        justify-content: center;
-    }
-    .menu-item-extended > svg{
-        margin: 0 !important;
+.metaverse {
+    border-right: none !important;
+}
+
+.metaverse .md-table table {
+    table {
+        width: 100%;
     }
 }
 
-:root{
-    --sidebar-section-wrapper-padding: 0rem 1rem 1rem !important;
+.metaverse .md-table table td {
+    padding: var(--space-2);
 }
+
+.metaverse-show-all {
+    padding: .5em !important;
+}
+
+.metaverse-div-link {
+    padding: 0;
+    color: var(--d-link-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*@media screen and (min-width: 925px) {*/
+/*    .container.posts .topic-navigation{*/
+/*        width: 6em;*/
+/*    }*/
+/*}*/
+
+/*.sidebar-container {*/
+/*    .top-menu {*/
+/*        background: transparent;*/
+/*        .menu-placeholder{*/
+/*            flex: 1;*/
+/*        }*/
+/*    }*/
+/*    .menu-item-extended {*/
+/*        flex: 1;*/
+/*        justify-content: center;*/
+/*    }*/
+/*    .menu-item-extended > svg{*/
+/*        margin: 0 !important;*/
+/*    }*/
+/*}*/
+
+/*:root{*/
+/*    --sidebar-section-wrapper-padding: 0rem 1rem 1rem !important;*/
+/*}*/
 
 /*div.topic-avatar .post-avatar a[data-user-card=neo] img.avatar {*/
 /*    border: 1px solid var(--tertiary) !important;*/

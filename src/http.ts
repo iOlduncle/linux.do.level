@@ -1,26 +1,36 @@
 import { GM } from "$";
-// import { http } from "@tauri-apps/api";
-// import { ResponseType } from "@tauri-apps/api/http";
 
-interface LevelContentResult {
+interface HttpRequestResult {
     status: boolean;
     content: string;
     error: string;
 }
 
-export async function getLevelFromConnect(): Promise<LevelContentResult> {
-    return await new Promise<LevelContentResult>((resolve, reject) => {
+interface MetaverseResult {
+    status: boolean;
+    content: HTMLDivElement | null;
+    error: string;
+}
+
+export async function getLevelFromConnect(): Promise<HttpRequestResult> {
+    return await new Promise<HttpRequestResult>((resolve, reject) => {
         GM.xmlHttpRequest({
             method: "GET",
             url: 'https://connect.linux.do',
             onload: (response) => {
                 let regx = /<body[^>]*>([\s\S]+?)<\/body>/i;
                 let contents = regx.exec(response.responseText);
-                if (contents) {
+                if (contents && contents.length > 1) {
                     resolve({
                         status: true,
                         content: contents[1],
                         error: ''
+                    });
+                } else {
+                    resolve({
+                        status: false,
+                        content: '',
+                        error: '解析 Connect 数据错误。'
                     });
                 }
             },
@@ -31,18 +41,31 @@ export async function getLevelFromConnect(): Promise<LevelContentResult> {
     });
 }
 
-
-// export async function getLevelFromConnect(): Promise<string | null> {
-//     const logoutText = '<a href="/logout" target="_self" class="text-blue-500 hover:underline" title="LINUX DO登录也会退出">退出</a>';
-//     let response = await http.fetch<string>('https://connect.linux.do', {
-//         method: "GET",
-//         responseType: ResponseType.Text,
-//         headers:{
-//             'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-//             'Cookie': document.cookie
-//         }
-//     });
-//     let regx = /<body[^>]*>([\s\S]+?)<\/body>/i;
-//     let contents = regx.exec(response.data.replace(logoutText,''));
-//     return contents ? contents[1] : null;
-// }
+export async function getMetaverse(): Promise<MetaverseResult> {
+    return await new Promise<MetaverseResult>((resolve, reject) => {
+        GM.xmlHttpRequest({
+            method: "GET",
+            url: 'https://linux.do/pub/resources',
+            onload: (response) => {
+                const dom = new DOMParser().parseFromString(response.responseText, 'text/html');
+                const div = dom.querySelector<HTMLDivElement>('div.published-page-content-body');
+                if (div) {
+                    resolve({
+                        status: true,
+                        content: div,
+                        error: ''
+                    });
+                } else {
+                    resolve({
+                        status: false,
+                        content: null,
+                        error: '解析数据错误。'
+                    });
+                }
+            },
+            onerror: (e) => {
+                reject({ status: false, error: e.error, content: '' });
+            }
+        })
+    })
+}

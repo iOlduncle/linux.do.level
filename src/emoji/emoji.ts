@@ -1,23 +1,10 @@
 import { observeDom } from "../utils";
 
-// declare global {
-//     interface Element {
-//         moveElementToFirstBySelector(selector: string): void;
-//     }
-// }
-//
-// Element.prototype.moveElementToFirstBySelector = (selector: string): void => {
-//     const select = Element.prototype.querySelector(selector);
-//     if (select) {
-//         Element.prototype.insertBefore(select, Element.prototype.children[0].nextSibling);
-//     }
-// }
-
 //emoji-picker__sections-nav
 //emoji-picker__scrollable-content
 //data-section
 //d-menu-portals
-export class Emoji {
+class Emoji {
 
     private moveElementToFirstBySelector(selector: string, root: Element, click: boolean = false) {
         let node = root.querySelector(selector);
@@ -25,14 +12,21 @@ export class Emoji {
             root.insertBefore(node, root.children[0].nextSibling);
             if (click && node instanceof HTMLButtonElement) {
                 node.click();
+                if (root.children[0] instanceof HTMLElement) {
+                    const timer = setInterval(() => {
+                        if (root.children[0] instanceof HTMLElement) {
+                            root.children[0].click();
+                        }
+                        clearInterval(timer);
+                    }, 50)
+                }
             }
         }
     }
 
     private customs: string[] = ['飞书', '小红书', 'b站', '贴吧'];
 
-    private observe = new MutationObserver(() => {
-
+    private onEmojiPickerOpen = () => {
         let loadTimes = 0;
         let emojiPicker = document.querySelector('div.emoji-picker');
         if (emojiPicker) {
@@ -49,14 +43,16 @@ export class Emoji {
                     }
                     clearInterval(timer);
                 }
-                loadTimes ++;
+                loadTimes++;
                 if (loadTimes >= 300) {
                     console.warn('emoji 加载缓慢，跳过修正，下次打开表情面板即可正常显示。')
                     clearInterval(timer);
                 }
             });
         }
-    });
+    }
+
+    private observe = new MutationObserver(this.onEmojiPickerOpen);
 
     public init() {
         observeDom('div#reply-control', (replay) => {
@@ -76,4 +72,8 @@ export class Emoji {
             this.observe.disconnect();
         }
     }
+}
+
+export function initEmoji() {
+    new Emoji().init();
 }
